@@ -9,8 +9,8 @@ using System.Collections;
 public class ExcelExampleData
 {
   [SerializeField]
-  int iD;
-  public int ID { get {return iD; } set { iD = value;} }
+  int id;
+  public int ID { get {return id; } set { id = value;} }
   
   [SerializeField]
   string name;

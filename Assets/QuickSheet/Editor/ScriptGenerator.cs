@@ -241,11 +241,12 @@ namespace UnityQuickSheet
         protected virtual string GetFieldNameForField(MemberFieldData field)
         {
             char[] chArray = field.Name.ToCharArray();
-            if (chArray.Length > 0)
+            if (chArray.Length > 1 && Char.IsLower(chArray[1]))
             {
                 chArray[0] = char.ToLower(chArray[0]);
+                return new string(chArray);
             }
-            return new string(chArray);
+            return field.Name.ToLower();
         }
 
         /// <summary>
