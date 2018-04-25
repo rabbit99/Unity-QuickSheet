@@ -240,7 +240,12 @@ namespace UnityQuickSheet
         /// </summary>
         protected virtual string GetFieldNameForField(MemberFieldData field)
         {
-            return field.Name.ToLower();
+            char[] chArray = field.Name.ToCharArray();
+            if (chArray.Length > 0)
+            {
+                chArray[0] = char.ToLower(chArray[0]);
+            }
+            return new string(chArray);
         }
 
         /// <summary>
@@ -248,12 +253,7 @@ namespace UnityQuickSheet
         /// </summary>
         protected virtual string GetPropertyNameForField(MemberFieldData field)
         {
-            if (field.type == CellType.Enum)
-                return field.Name.ToUpper();
-
-            // To prevent an error can happen when the name of the column header has all lower case characters.
-            TextInfo ti = new CultureInfo("en-US", false).TextInfo;
-            return ti.ToTitleCase(field.Name);
+            return field.type == CellType.Enum ? field.Name.ToUpper() : field.Name;
         }
 
         /// <summary>

@@ -8,6 +8,7 @@
 using UnityEngine;
 using UnityEditor;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -370,30 +371,32 @@ namespace UnityQuickSheet
         /// <param name="s">A column header string in the spreadsheet.</param>
         /// <param name="order">A order number to sort column header.</param>
         /// <returns>A newly created ColumnHeader class instance.</returns>
-        protected ColumnHeader ParseColumnHeader(string columnheader, int order)
+        protected ColumnHeader ParseColumnHeader(string columnHeader, int order)
         {
-            // remove all white space. e.g.) "SkillLevel | uint"
-            string cHeader = new string(columnheader.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
-
-            CellType ctype = CellType.Undefined;
+            string columnName = columnHeader;
+            CellType columnType = CellType.Undefined;
             bool bArray = false;
-            if (cHeader.Contains('|'))
+            int separatorIndex = columnHeader.IndexOf('|');
+            if (columnHeader.Length > 0 && separatorIndex >= 0)
             {
-                // retrive columnheader name.
-                string substr = cHeader;
-                bArray = cHeader.Contains("!");
-                substr = cHeader.Substring(0, cHeader.IndexOf('|'));
+                columnName = columnHeader.Substring(0, separatorIndex);
+                string typeString = columnHeader.Substring(separatorIndex + 1);
+                typeString = new string(typeString.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+                bArray = typeString.Contains("!");
 
                 // retrieve CellType from the columnheader.
-                int startIndex = cHeader.IndexOf('|') + 1;
-                int length = cHeader.Length - cHeader.IndexOf('|') - (bArray ? 2 : 1);
-                string strType = cHeader.Substring(startIndex, length).ToLower();
-                ctype = (CellType)Enum.Parse(typeof(CellType), strType, true);
-
-                return new ColumnHeader { name = substr, type = ctype, isArray = bArray, OrderNO = order };
+                int length = typeString.Length - (bArray ? 1 : 0);
+                string strType = typeString.Substring(0, length).ToLower();
+                columnType = (CellType)Enum.Parse(typeof(CellType), strType, true);
             }
 
-            return new ColumnHeader { name = cHeader, type = CellType.Undefined, OrderNO = order };
+            TextInfo ti = new CultureInfo("en-US", false).TextInfo;
+            // To prevent an error can happen when the name of the column header has all lower case characters.
+            columnName = ti.ToTitleCase(columnName);
+            // Remove all white spaces
+            columnName = new string(columnName.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+
+            return new ColumnHeader { name = columnName, type = columnType, isArray = bArray, OrderNO = order };
         }
     }
 }

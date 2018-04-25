@@ -9,8 +9,8 @@ using System.Collections;
 public class ExcelExampleData
 {
   [SerializeField]
-  int id;
-  public int Id { get {return id; } set { id = value;} }
+  int iD;
+  public int ID { get {return iD; } set { iD = value;} }
   
   [SerializeField]
   string name;
@@ -23,5 +23,13 @@ public class ExcelExampleData
   [SerializeField]
   Difficulty difficulty;
   public Difficulty DIFFICULTY { get {return difficulty; } set { difficulty = value;} }
+  
+  [SerializeField]
+  float strengthValue;
+  public float StrengthValue { get {return strengthValue; } set { strengthValue = value;} }
+  
+  [SerializeField]
+  int[] associatedID = new int[0];
+  public int[] AssociatedID { get {return associatedID; } set { associatedID = value;} }
   
 }

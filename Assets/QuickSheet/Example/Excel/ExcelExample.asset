@@ -11,46 +11,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98fce3204d7cbc64c930d2c915a49615, type: 3}
   m_Name: ExcelExample
   m_EditorClassIdentifier: 
-  SheetName: Assets/QuickSheet/Example/Excel/Example.xlsx
+  SheetName: Assets/QuickSheet/Example/Excel/Example.xls
   WorksheetName: ExcelExample
   dataArray:
-  - id: 0
+  - iD: 0
     name: Goblin
     strength: 5
     difficulty: 0
-  - id: 1
+    strengthValue: 5
+    associatedID: 010000000200000003000000
+  - iD: 1
     name: Wolf
     strength: 5
     difficulty: 0
-  - id: 2
+    strengthValue: 5
+    associatedID: 0400000005000000
+  - iD: 2
     name: Scavanger
     strength: 7
     difficulty: 0
-  - id: 3
+    strengthValue: 7
+    associatedID: 0400000005000000
+  - iD: 3
     name: Lurker
     strength: 9
     difficulty: 0
-  - id: 4
+    strengthValue: 9
+    associatedID: 0400000005000000
+  - iD: 4
     name: Sceleton
     strength: 11
     difficulty: 1
-  - id: 5
+    strengthValue: 11
+    associatedID: 0400000005000000
+  - iD: 5
     name: Ghost
     strength: 13
     difficulty: 1
-  - id: 6
+    strengthValue: 13
+    associatedID: 0400000005000000
+  - iD: 6
     name: Orc
     strength: 15
     difficulty: 1
-  - id: 7
+    strengthValue: 15
+    associatedID: 0400000005000000
+  - iD: 7
     name: Hydra
     strength: 17
     difficulty: 2
-  - id: 8
+    strengthValue: 17
+    associatedID: 0400000005000000
+  - iD: 8
     name: Undead
     strength: 19
     difficulty: 2
-  - id: 9
+    strengthValue: 19
+    associatedID: 0400000005000000
+  - iD: 9
     name: Dragon
     strength: 21
     difficulty: 2
+    strengthValue: 21
+    associatedID: 0400000005000000
