@@ -23,6 +23,8 @@ namespace UnityQuickSheet
             {
                 if (!_instance)
                     _instance = Resources.FindObjectsOfTypeAll<T>().FirstOrDefault();
+                if (!_instance)
+                    Debug.LogWarning("No instance of " + typeof(T).Name + " is loaded. Please create or remport a " + typeof(T).Name + " asset file.");
                 return _instance;
             }
         }
