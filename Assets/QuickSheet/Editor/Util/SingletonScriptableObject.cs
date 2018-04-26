@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using UnityEngine;
+using UnityEditor;
 
 namespace UnityQuickSheet
 {
@@ -22,9 +23,24 @@ namespace UnityQuickSheet
             get
             {
                 if (!_instance)
+                {
                     _instance = Resources.FindObjectsOfTypeAll<T>().FirstOrDefault();
+                }
                 if (!_instance)
+                {
+                    if (typeof(T) == typeof(GoogleDataSettings))
+                    {
+                        _instance = AssetDatabase.LoadAssetAtPath<T>(@"Assets/QuickSheet/GDataPlugin/Editor/Google Data Settings.asset");
+                    }
+                    else if (typeof(T) == typeof(ExcelSettings))
+                    {
+                        _instance = AssetDatabase.LoadAssetAtPath<T>(@"Assets/QuickSheet/ExcelPlugin/Editor/Excel Settings.asset");
+                    }
+                }
+                if (!_instance)
+                {
                     Debug.LogWarning("No instance of " + typeof(T).Name + " is loaded. Please create or remport a " + typeof(T).Name + " asset file.");
+                }
                 return _instance;
             }
         }
