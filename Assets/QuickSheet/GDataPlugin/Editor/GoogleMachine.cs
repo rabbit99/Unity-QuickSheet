@@ -33,7 +33,10 @@ namespace UnityQuickSheet
         {
             // excel and google plugin have its own template files,
             // so we need to set the different path when the asset file is created.
-            TemplatePath = GoogleDataSettings.Instance.TemplatePath;
+            if (GoogleDataSettings.Instance != null)
+            {
+                TemplatePath = GoogleDataSettings.Instance.TemplatePath;
+            }
         }
 
         /// <summary>
